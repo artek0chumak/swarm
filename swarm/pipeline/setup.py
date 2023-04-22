@@ -130,6 +130,7 @@ setup(
     version=version_string,
     cmdclass={"build_py": BuildPy, "develop": Develop},
     package_data={"src": ["proto/*", "src_cli/*"]},
+    packages=find_packages(exclude=["tests"]),
     include_package_data=True,
     license="MIT",
     setup_requires=["grpcio-tools"],
