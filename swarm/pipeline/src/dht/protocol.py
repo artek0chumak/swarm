@@ -117,7 +117,7 @@ class DHTProtocol(ServicerBase):
                         f"Peer {peer} can't access this node. " f"Probably, libp2p has failed to bypass the firewall"
                     )
 
-                if response.dht_time != dht_pb2.PingResponse.dht_time.DESCRIPTOR.default_value:
+                if response.dht_time != 0.0: # something is off here
                     if (
                         response.dht_time < time_requested - MAX_DHT_TIME_DISCREPANCY_SECONDS
                         or response.dht_time > time_responded + MAX_DHT_TIME_DISCREPANCY_SECONDS
