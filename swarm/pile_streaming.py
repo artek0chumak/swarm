@@ -44,16 +44,12 @@ def examples_from_documents(documents, max_seq_length=MAX_SEQ_LENGTH):
 def get_pile_dataset(seed, shards_to_choose):
     shards = random.Random(seed).choices(range(30), k=shards_to_choose)
 
-    # dsets = [
-    #     load_dataset("json", data_files=f"https://the-eye.eu/public/AI/pile/train/{shard:02}.jsonl.zst",
-    #                  streaming=True, split="train") for shard in shards
-    # ]
+    dsets = [
+        load_dataset("json", data_files=f"https://the-eye.eu/public/AI/pile/train/{shard:02}.jsonl.zst",
+                     streaming=True, split="train") for shard in shards
+    ]
 
-    # pile = interleave_datasets(dsets)
-    pile = load_dataset(
-        "json", data_files="https://the-eye.eu/public/AI/pile/train/00.jsonl.zst",
-        streaming=True, split="train"
-    )
+    pile = interleave_datasets(dsets)
     shuffled_pile = pile.shuffle(buffer_size=100, seed=seed)
     tokenized_pile = shuffled_pile.map(
         examples_from_documents, batched=True, batch_size=4,

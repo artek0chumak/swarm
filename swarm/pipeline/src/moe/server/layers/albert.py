@@ -576,7 +576,7 @@ class BodyExpert(nn.Module):
         config = LeanAlbertConfig.from_pretrained("albert-xxlarge-v2")
         config.hidden_size = hid_dim
         config.intermediate_size = 4 * config.hidden_size
-        config.num_hidden_layers = 12
+        config.num_hidden_layers = 6
         config.vocab_size = 50304
         config.max_position_embeddings = SEQUENCE_LENGTH
 

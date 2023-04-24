@@ -188,6 +188,7 @@ class ExpertBackend:
             self.optimizer.step(batch_size)
         else:
             if self.target_batch_size is None or self.examples_processed % self.target_batch_size == 0:
+                logger.info(f"{self.name} is updating weights")
                 self.optimizer.step()
                 self.optimizer.zero_grad()
 
